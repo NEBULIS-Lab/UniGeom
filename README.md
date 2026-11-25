@@ -7,7 +7,7 @@
 </p>
 
 <h1 align="center">UniGeom</h1>
-<p align="center"><strong>Can Shared Geometry Connect World Models?</strong></p>
+<p align="center"><strong>Shared Geometry for World Models</strong></p>
 
 <p align="center">
   <a href="https://nebulis-lab.com/UniGeom/"><img src="media/badges/project.svg" alt="Project page" /></a>
