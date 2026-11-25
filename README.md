@@ -1,13 +1,35 @@
-# UniGeom
+<p align="center">
+  <a href="https://nebulis-lab.com/UniGeom/#application">
+    <img src="media/application.gif" width="960" alt="Application illustration: a quadruped carries a part from a bright workspace through a doorway and places it in a factory." />
+  </a>
+  <br />
+  <sub>Scripted application illustration.</sub>
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.2%2B-orange.svg)](pyproject.toml)
-[![tests](https://github.com/NEBULIS-Lab/shuaijun-feiyang-CVPR2027-UniGeom-code/actions/workflows/tests.yml/badge.svg)](https://github.com/NEBULIS-Lab/shuaijun-feiyang-CVPR2027-UniGeom-code/actions/workflows/tests.yml)
-[![Project page](https://img.shields.io/badge/Project_page-UniGeom-8080ff.svg)](https://nebulis-lab.github.io/shuaijun-feiyang-CVPR2027-UniGeom-code/)
-[![arXiv: planned](https://img.shields.io/badge/arXiv-planned-lightgrey.svg)](#project-links)
+<h1 align="center">UniGeom</h1>
+<p align="center"><strong>Can Shared Geometry Connect World Models?</strong></p>
 
-PyTorch interfaces that map frozen visual representations into the native state space of a frozen receiver dynamics model. Fit adapters from paired features of the same observations, then use the receiver's existing prediction and action conventions.
+<p align="center">
+  <a href="https://nebulis-lab.com/UniGeom/"><img src="media/badges/project.svg" alt="Project page" /></a>
+  <a href="LICENSE"><img src="media/badges/license.svg" alt="License: MIT" /></a>
+  <a href="pyproject.toml"><img src="media/badges/python.svg" alt="Python 3.10+" /></a>
+  <a href="pyproject.toml"><img src="media/badges/pytorch.svg" alt="PyTorch 2.2+" /></a>
+  <a href="https://github.com/NEBULIS-Lab/UniGeom/actions/workflows/tests.yml"><img src="media/badges/tests.svg" alt="CI: GitHub Actions" /></a>
+  <a href="#project-links"><img src="media/badges/arxiv.svg" alt="arXiv: planned" /></a>
+</p>
+
+<p align="center">
+  Shuaijun Liu<sup>1</sup> · Feiyang You<sup>1</sup> · Qifu Wen<sup>2,3</sup> · Shuyang Hao<sup>1</sup><br />
+  Xingwei Chen<sup>3,4</sup> · Chenglong Zhang<sup>1</sup> · Chengyu Wu<sup>1</sup> · Ningxin Su<sup>1,*</sup>
+</p>
+<p align="center">
+  <sup>1</sup> The Hong Kong University of Science and Technology (Guangzhou)<br />
+  <sup>2</sup> Boston University · <sup>3</sup> Shanghai Jiao Tong University<br />
+  <sup>4</sup> Eastern Institute of Technology, Ningbo<br />
+  <sup>*</sup> Corresponding author: <a href="mailto:ningxinsu@hkust-gz.edu.cn">ningxinsu@hkust-gz.edu.cn</a>
+</p>
+
+UniGeom provides compact PyTorch interfaces between independently trained world-model components. Calibrate an adapter using paired features from common observations, then pass the mapped features to a frozen receiver’s dynamics model. Both pretrained components remain frozen.
 
 The package includes:
 
@@ -19,8 +41,8 @@ The package includes:
 ## Install
 
 ```bash
-git clone https://github.com/NEBULIS-Lab/shuaijun-feiyang-CVPR2027-UniGeom-code.git
-cd shuaijun-feiyang-CVPR2027-UniGeom-code
+git clone https://github.com/NEBULIS-Lab/UniGeom.git
+cd UniGeom
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -73,11 +95,11 @@ The CLI runs on CPU by default, splits by trajectory, and fits normalization on 
 
 Each paired row comes from the **same observation**. Spatial tokens follow a consistent raster order, with any class token removed before adapting them.
 
-| Interface | Source features | Receiver features |
-| --- | --- | --- |
-| `RidgeResidualMap` | `[N, C_A]` | `[N, C_B]` |
-| `SpatialReadout`, `PooledReadout` | `[N, P, C_A]` | `[N, C_B]` |
-| `SpatialResampler` | `[N, G_A², C_A]` | `[N, G_B², C_B]` |
+| Interface                         | Source features  | Receiver features |
+| --------------------------------- | ---------------- | ----------------- |
+| `RidgeResidualMap`                | `[N, C_A]`       | `[N, C_B]`        |
+| `SpatialReadout`, `PooledReadout` | `[N, P, C_A]`    | `[N, C_B]`        |
+| `SpatialResampler`                | `[N, G_A², C_A]` | `[N, G_B², C_B]`  |
 
 Here `N` is the number of paired observations, `P` is the source token count, and `G_A` / `G_B` are square grid sizes. Split trajectories into calibration and evaluation sets before fitting statistics or adapters. Adapter outputs are restored to receiver coordinates before prediction.
 
@@ -85,7 +107,7 @@ See [integration](docs/integration.md) for calibration, encoder extraction, spat
 
 ## Project links
 
-[Explore the interactive project page](https://nebulis-lab.github.io/shuaijun-feiyang-CVPR2027-UniGeom-code/) for the method, measured geometry, recorded comparisons and manuscript. An arXiv link will be added when available.
+[Explore the interactive project page](https://nebulis-lab.com/UniGeom/) for the method, measured geometry, recorded comparisons and manuscript. An arXiv link will be added when available.
 
 ## License
 

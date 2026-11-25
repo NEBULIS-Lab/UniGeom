@@ -1,5 +1,7 @@
 # UniGeom project page
 
+The attributed project page is published at [nebulis-lab.com/UniGeom](https://nebulis-lab.com/UniGeom/).
+
 A static seven-chapter presentation, served from `docs/`: Overview, Shared geometry, Application, Framework, Interface, Experiments and Results. Develop with `python3 -m http.server 8000 --directory docs` from the repository root. The downloadable review package includes a separately bundled offline entry.
 
 ## A continuous explanation

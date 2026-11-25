@@ -21,5 +21,6 @@ where = ["src"]
 testpaths = ["tests"]
 
 [project.urls]
-Repository = "https://github.com/NEBULIS-Lab/shuaijun-feiyang-CVPR2027-UniGeom-code"
-Issues = "https://github.com/NEBULIS-Lab/shuaijun-feiyang-CVPR2027-UniGeom-code/issues"
+Homepage = "https://nebulis-lab.com/UniGeom/"
+Repository = "https://github.com/NEBULIS-Lab/UniGeom"
+Issues = "https://github.com/NEBULIS-Lab/UniGeom/issues"
