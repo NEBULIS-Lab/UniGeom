@@ -24,11 +24,11 @@
       property="og:image"
     />
     <link href="assets/favicon.svg" rel="icon" type="image/svg+xml" />
-    <link href="assets/site.css?v=20261126c" rel="stylesheet" />
-    <script src="assets/site.js?v=20261126c" type="module"></script>
+    <link href="assets/site.css?v=20261126d" rel="stylesheet" />
+    <script src="assets/site.js?v=20261126d" type="module"></script>
     <meta content="dark" name="color-scheme" />
-    <link href="assets/framework.css?v=20261126c" rel="stylesheet" />
-    <link href="assets/integrated.css?v=20261126c" rel="stylesheet" />
+    <link href="assets/framework.css?v=20261126d" rel="stylesheet" />
+    <link href="assets/integrated.css?v=20261126d" rel="stylesheet" />
   </head>
   <body>
     <a class="skip" href="#stage">Skip to presentation</a>
@@ -71,15 +71,6 @@
         >
           Interface</button
         ><button
-          aria-controls="slide-results"
-          aria-selected="false"
-          data-page="results"
-          id="tab-results"
-          role="tab"
-          tabindex="-1"
-        >
-          Results</button
-        ><button
           aria-controls="slide-experiments"
           aria-selected="false"
           data-page="experiments"
@@ -87,7 +78,16 @@
           role="tab"
           tabindex="-1"
         >
-          Experiments
+          Experiments</button
+        ><button
+          aria-controls="slide-results"
+          aria-selected="false"
+          data-page="results"
+          id="tab-results"
+          role="tab"
+          tabindex="-1"
+        >
+          Results
         </button>
       </nav>
       <a
@@ -201,11 +201,15 @@
           </p>
           <div hidden="" id="geometry-cohort">
             <p class="detail-copy">
-              Each distribution includes all 606 observations. Select a bar to
-              inspect how frequently the encoders agree.
+              Each pair’s mean includes all 606 observations. Select a pair to
+              compare the same observation IDs.
             </p>
+            <div
+              aria-label="Mean neighborhood overlap"
+              id="geometry-pair-summary"
+            ></div>
             <button class="button small" data-figure-open="shared-geometry">
-              Inspect the geometry result
+              Inspect the complete result
             </button>
           </div>
         </aside>
@@ -221,11 +225,11 @@
             ><button aria-pressed="false" data-geometry-step="1">
               <span>02</span> Shared neighbors</button
             ><button aria-pressed="false" data-geometry-step="2">
-              <span>03</span> Model pairs
+              <span>03</span> Shared structure
             </button>
           </div>
           <div class="stage-top">
-            <span
+            <span id="geometry-legend"
               ><i class="legend-dot violet"></i> Shared neighbor
               <i class="legend-dot teal"></i> B only
               <i class="legend-dot sand"></i> A only</span
@@ -356,77 +360,6 @@
         </div>
       </section>
       <section
-        aria-labelledby="tab-results"
-        class="slide chapter"
-        data-slide="results"
-        hidden=""
-        id="slide-results"
-        role="tabpanel"
-      >
-        <aside class="chapter-copy">
-          <h2>What survives the connection?</h2>
-          <p>
-            Compare complete evaluation cohorts. Every connected route uses the
-            receiver’s existing prediction and control system.
-          </p>
-          <label class="field" data-results-live=""
-            >Experiment<select id="results-study">
-              <option value="navigation">TwoRooms · MAE → LeWM</option>
-              <option value="spatial">PushT · LeWM → DINO-WM</option>
-              <option value="second_source">PushT · MAE → DINO-WM</option>
-              <option value="brightness">PushT · view recalibration</option>
-            </select></label
-          ><label class="field" data-results-live=""
-            >Metric<select id="results-metric">
-              <option value="terminal_pct">Terminal success (%)</option>
-              <option value="native_terminal_retained_pct">
-                Native successes retained (%)
-              </option>
-              <option value="holding_pct">Last-ten success (%)</option>
-            </select></label
-          >
-          <p class="detail-copy" data-results-live="" id="results-context"></p>
-          <a
-            class="text-link"
-            data-results-live=""
-            href="assets/UniGeom.pdf"
-            rel="noopener"
-            target="_blank"
-            >Full protocols and comparisons
-          </a>
-        </aside>
-        <div class="chapter-stage results-stage">
-          <div aria-label="Result views" class="stage-steps evidence-steps">
-            <button class="selected" data-result-view="cohorts">
-              Control cohorts</button
-            ><button data-result-view="prediction-controls">
-              Prediction checks</button
-            ><button data-result-view="learned-source">
-              Calibration budget
-            </button>
-          </div>
-          <div id="results-live">
-            <div class="stage-top">
-              <span id="chart-title">Terminal success (%)</span
-              ><span class="small-label" id="chart-cohort"></span>
-            </div>
-            <div id="results-chart" role="img"></div>
-            <div class="result-insight" id="result-insight"></div>
-            <p class="stage-hint" id="results-note"></p>
-          </div>
-          <figure class="embedded-evidence" hidden="" id="results-evidence">
-            <button aria-label="Enlarge result figure" class="evidence-image">
-              <img alt="" />
-            </button>
-            <figcaption>
-              <h3></h3>
-              <p class="evidence-caption"></p>
-              <p class="footnote evidence-scope"></p>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-      <section
         aria-labelledby="tab-experiments"
         class="slide experiments-section"
         data-slide="experiments"
@@ -545,6 +478,77 @@
               aria-label="Enlarge experiment figure"
               class="evidence-image"
             >
+              <img alt="" />
+            </button>
+            <figcaption>
+              <h3></h3>
+              <p class="evidence-caption"></p>
+              <p class="footnote evidence-scope"></p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section
+        aria-labelledby="tab-results"
+        class="slide chapter"
+        data-slide="results"
+        hidden=""
+        id="slide-results"
+        role="tabpanel"
+      >
+        <aside class="chapter-copy">
+          <h2>What survives the connection?</h2>
+          <p>
+            Compare complete evaluation cohorts. Every connected route uses the
+            receiver’s existing prediction and control system.
+          </p>
+          <label class="field" data-results-live=""
+            >Experiment<select id="results-study">
+              <option value="navigation">TwoRooms · MAE → LeWM</option>
+              <option value="spatial">PushT · LeWM → DINO-WM</option>
+              <option value="second_source">PushT · MAE → DINO-WM</option>
+              <option value="brightness">PushT · view recalibration</option>
+            </select></label
+          ><label class="field" data-results-live=""
+            >Metric<select id="results-metric">
+              <option value="terminal_pct">Terminal success (%)</option>
+              <option value="native_terminal_retained_pct">
+                Native successes retained (%)
+              </option>
+              <option value="holding_pct">Last-ten success (%)</option>
+            </select></label
+          >
+          <p class="detail-copy" data-results-live="" id="results-context"></p>
+          <a
+            class="text-link"
+            data-results-live=""
+            href="assets/UniGeom.pdf"
+            rel="noopener"
+            target="_blank"
+            >Full protocols and comparisons
+          </a>
+        </aside>
+        <div class="chapter-stage results-stage">
+          <div aria-label="Result views" class="stage-steps evidence-steps">
+            <button class="selected" data-result-view="cohorts">
+              Control cohorts</button
+            ><button data-result-view="prediction-controls">
+              Prediction checks</button
+            ><button data-result-view="learned-source">
+              Calibration budget
+            </button>
+          </div>
+          <div id="results-live">
+            <div class="stage-top">
+              <span id="chart-title">Terminal success (%)</span
+              ><span class="small-label" id="chart-cohort"></span>
+            </div>
+            <div id="results-chart" role="img"></div>
+            <div class="result-insight" id="result-insight"></div>
+            <p class="stage-hint" id="results-note"></p>
+          </div>
+          <figure class="embedded-evidence" hidden="" id="results-evidence">
+            <button aria-label="Enlarge result figure" class="evidence-image">
               <img alt="" />
             </button>
             <figcaption>
