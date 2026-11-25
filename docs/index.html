@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -23,74 +24,83 @@
       property="og:image"
     />
     <link href="assets/favicon.svg" rel="icon" type="image/svg+xml" />
-    <link href="assets/site.css?v=20261126" rel="stylesheet" />
-    <script src="assets/site.js?v=20261126" type="module"></script>
+    <link href="assets/site.css?v=20261126b" rel="stylesheet" />
+    <script src="assets/site.js?v=20261126b" type="module"></script>
     <meta content="dark" name="color-scheme" />
   </head>
   <body>
     <a class="skip" href="#stage">Skip to presentation</a>
     <header class="site-header">
-      <nav class="page-tabs" role="tablist" aria-label="Presentation pages">
+      <nav aria-label="Presentation pages" class="page-tabs" role="tablist">
         <button
-          role="tab"
-          id="tab-overview"
-          data-page="overview"
           aria-controls="slide-overview"
           aria-selected="true"
+          data-page="overview"
+          id="tab-overview"
+          role="tab"
           tabindex="0"
         >
           Overview</button
         ><button
-          role="tab"
-          id="tab-geometry"
-          data-page="geometry"
           aria-controls="slide-geometry"
           aria-selected="false"
+          data-page="geometry"
+          id="tab-geometry"
+          role="tab"
           tabindex="-1"
         >
           Shared geometry</button
         ><button
-          role="tab"
-          id="tab-connection"
-          data-page="connection"
           aria-controls="slide-connection"
           aria-selected="false"
+          data-page="connection"
+          id="tab-connection"
+          role="tab"
           tabindex="-1"
         >
-          Connection</button
+          Framework</button
         ><button
-          role="tab"
-          id="tab-interface"
-          data-page="interface"
           aria-controls="slide-interface"
           aria-selected="false"
+          data-page="interface"
+          id="tab-interface"
+          role="tab"
           tabindex="-1"
         >
           Interface</button
         ><button
-          role="tab"
-          id="tab-results"
-          data-page="results"
           aria-controls="slide-results"
           aria-selected="false"
+          data-page="results"
+          id="tab-results"
+          role="tab"
           tabindex="-1"
         >
           Results</button
         ><button
-          role="tab"
-          id="tab-experiments"
-          data-page="experiments"
           aria-controls="slide-experiments"
           aria-selected="false"
+          data-page="experiments"
+          id="tab-experiments"
+          role="tab"
           tabindex="-1"
         >
           Experiments</button
         ><button
+          aria-controls="slide-figures"
+          aria-selected="false"
+          data-page="figures"
+          id="tab-figures"
           role="tab"
-          id="tab-paper"
-          data-page="paper"
+          tabindex="-1"
+        >
+          Paper figures</button
+        ><button
           aria-controls="slide-paper"
           aria-selected="false"
+          data-page="paper"
+          id="tab-paper"
+          role="tab"
           tabindex="-1"
         >
           Paper
@@ -99,12 +109,12 @@
       <a
         class="header-code"
         href="https://github.com/NEBULIS-Lab/shuaijun-feiyang-CVPR2027-UniGeom-code"
-        target="_blank"
         rel="noopener"
-        >Code <span aria-hidden="true">↗</span></a
-      >
+        target="_blank"
+        >Code <span aria-hidden="true"></span
+      ></a>
     </header>
-    <main id="stage" tabindex="-1" class="deck">
+    <main class="deck" id="stage" tabindex="-1">
       <section
         aria-labelledby="tab-overview"
         class="slide hero"
@@ -131,17 +141,16 @@
             <span>Chengyu Wu<sup>1</sup></span>
             <span>Ningxin Su<sup>1</sup></span>
           </div>
-
           <div class="hero-actions">
             <button class="button primary" data-go="geometry">
-              Explore the experiments <span aria-hidden="true">→</span></button
+              Explore the experiments <span aria-hidden="true"></span></button
             ><a
               class="button"
               href="assets/UniGeom.pdf"
               rel="noopener"
               target="_blank"
-              >Read the paper <span aria-hidden="true">↗</span></a
-            >
+              >Read the paper <span aria-hidden="true"></span
+            ></a>
           </div>
         </div>
         <div class="hero-visual">
@@ -151,7 +160,6 @@
           ></canvas>
           <div class="hero-cloud-label a">Encoder A</div>
           <div class="hero-cloud-label b">Encoder B</div>
-
           <p class="hero-evidence">
             606 shared observations · two independently trained encoders
           </p>
@@ -166,8 +174,10 @@
         role="tabpanel"
       >
         <aside class="chapter-copy">
-          <h2>Do the encoders find the same neighbors?</h2>
-          <p>
+          <h2 id="geometry-heading">
+            Do the encoders find the same neighbors?
+          </h2>
+          <p id="geometry-description">
             Two independent LeWM encoders see the same 606 observations. Select
             a point to find the ten observations each encoder considers most
             similar.
@@ -179,7 +189,7 @@
               <option value="2">LeWM · Pair 3</option>
             </select></label
           >
-          <div class="query-card">
+          <div class="query-card" data-geometry-detail="">
             <div
               aria-label="Selected PushT observation"
               class="observation"
@@ -192,27 +202,60 @@
               ><span class="small-label">shared nearest neighbors</span>
             </div>
           </div>
-          <div class="query-buttons">
+          <div class="query-buttons" data-geometry-detail="">
             <button aria-label="Previous observation" id="previous-query">
-              ←</button
-            ><button id="next-query">Next observation →</button>
+              Previous</button
+            ><button id="next-query">Next observation</button>
           </div>
-          <div class="cohort-stat">
+          <div class="cohort-stat" data-geometry-detail="">
             <strong id="geometry-mean">—</strong
             ><span>mean neighbor overlap<br />across all 606 observations</span>
           </div>
           <p class="footnote">
-            Nearest neighbors are measured in the original 192D features. The
-            separate 3D t-SNE views are aligned for display only.
+            The 3D t-SNE views are for display; neighbors use original 192D
+            distances.
           </p>
+          <div hidden="" id="geometry-cohort">
+            <div id="pair-comparison"></div>
+            <button
+              class="geometry-paper-thumb"
+              data-figure-open="shared-geometry"
+            >
+              <img
+                alt="The paper’s measured geometry comparison across independent model pairs"
+                loading="lazy"
+                src="assets/paper-figures/shared-geometry.svg"
+              /><span>View the paper’s geometry figure</span></button
+            ><button
+              class="button small"
+              data-gallery-target="matched-executions"
+              data-go="figures"
+            >
+              See the other tasks
+            </button>
+          </div>
         </aside>
         <div class="chapter-stage geometry-stage">
+          <div
+            aria-label="Shared geometry explanation"
+            class="stage-steps"
+            id="geometry-steps"
+            role="group"
+          >
+            <button aria-pressed="true" class="selected" data-geometry-step="0">
+              <span>01</span> Two spaces</button
+            ><button aria-pressed="false" data-geometry-step="1">
+              <span>02</span> Shared neighbors</button
+            ><button aria-pressed="false" data-geometry-step="2">
+              <span>03</span> Model pairs
+            </button>
+          </div>
           <div class="stage-top">
             <span
               ><i class="legend-dot violet"></i> Shared neighbor
               <i class="legend-dot teal"></i> B only
               <i class="legend-dot sand"></i> A only</span
-            ><button class="text-button" id="reset-camera">Reset view ↺</button>
+            ><button class="text-button" id="reset-camera">Reset view</button>
           </div>
           <canvas
             aria-label="Interactive 3D representation spaces. Drag to rotate, click a point to inspect, or use the observation buttons."
@@ -242,55 +285,104 @@
         role="tabpanel"
       >
         <aside class="chapter-copy">
-          <h2>Connect one encoder to another model’s predictor.</h2>
-          <p>
-            A paired observation gives two feature targets automatically. We
-            learn their correspondence while keeping both encoders and the
-            receiver’s dynamics frozen.
+          <h2>The framework in the paper.</h2>
+          <p id="framework-description">
+            We calibrate the boundary between perception and dynamics. Both
+            world models remain frozen; only the interface learns from
+            representations of common observations.
           </p>
-          <div class="step-list" id="connection-steps">
-            <button class="selected" data-step="0">
-              <span>01</span> Encode a shared observation</button
-            ><button data-step="1">
-              <span>02</span> Calibrate the interface</button
-            ><button data-step="2">
-              <span>03</span> Predict with the receiver</button
-            ><button data-step="3">
-              <span>04</span> Execute and observe again
-            </button>
-          </div>
-          <p class="detail-copy" id="connection-detail"></p>
-          <button class="button small" id="play-connection">
+          <p
+            class="detail-copy"
+            data-walkthrough-only=""
+            hidden=""
+            id="connection-detail"
+          ></p>
+          <button
+            class="button small"
+            data-walkthrough-only=""
+            hidden=""
+            id="play-connection"
+          >
             Replay these steps
+          </button>
+          <p class="framework-caption" id="framework-caption">
+            The original figure shows the receiver-specific interfaces and their
+            calibration. Open it at full size to read every connection and
+            label, or switch to the animated explanation.
+          </p>
+          <button class="button small" data-figure-open="problem">
+            Why state alignment is not enough
           </button>
         </aside>
         <div class="chapter-stage connection-stage">
-          <div class="stage-top">
-            <span
-              ><i class="legend-dot violet"></i> Trainable interface
-              <i class="legend-dot teal"></i> Frozen receiver</span
-            ><span class="small-label">Architecture illustration</span>
+          <div aria-label="Framework view" class="figure-mode" role="group">
+            <button
+              aria-pressed="true"
+              class="selected"
+              data-framework-mode="paper"
+            >
+              Paper framework</button
+            ><button aria-pressed="false" data-framework-mode="walkthrough">
+              Step-by-step animation
+            </button>
           </div>
-          <div
-            aria-label="Diagram; scroll horizontally on narrow screens"
-            class="diagram-scroll"
-            tabindex="0"
-          >
-            <svg
-              aria-label="Source perception connects through a calibrated interface to the frozen receiver dynamics. The receiver encoder supplies calibration targets."
-              id="connection-diagram"
-              role="img"
-              viewbox="0 0 760 460"
-            ></svg>
+          <figure class="paper-framework" id="paper-framework">
+            <button
+              aria-label="Enlarge the original framework figure"
+              class="paper-image-button"
+              data-figure-open="framework"
+            >
+              <img
+                alt="Original UniGeom framework figure from the paper"
+                src="assets/paper-figures/framework.svg"
+              />
+            </button>
+            <figcaption>
+              Figure 3 · Original paper figure, preserved as a scalable
+              vector.<button class="button small" data-figure-open="framework">
+                Enlarge figure
+              </button>
+            </figcaption>
+          </figure>
+          <div hidden="" id="connection-walkthrough">
+            <div class="stage-steps" id="connection-steps">
+              <button class="selected" data-step="0">
+                <span>01</span> Encode a shared observation</button
+              ><button data-step="1">
+                <span>02</span> Calibrate the interface</button
+              ><button data-step="2">
+                <span>03</span> Predict with the receiver</button
+              ><button data-step="3">
+                <span>04</span> Execute and observe again
+              </button>
+            </div>
+            <div class="stage-top">
+              <span
+                ><i class="legend-dot violet"></i> Trainable interface
+                <i class="legend-dot teal"></i> Frozen receiver</span
+              ><span class="small-label">Architecture illustration</span>
+            </div>
+            <div
+              aria-label="Diagram; scroll horizontally on narrow screens"
+              class="diagram-scroll"
+              tabindex="0"
+            >
+              <svg
+                aria-label="Source perception connects through a calibrated interface to the frozen receiver dynamics. The receiver encoder supplies calibration targets."
+                id="connection-diagram"
+                role="img"
+                viewbox="0 0 760 460"
+              ></svg>
+            </div>
+            <div class="equation">
+              F<sub>B</sub>( T<sub>A→B</sub>( E<sub>A</sub>(o<sub>t</sub>) ),
+              a<sub>t</sub> ) → ẑ<sub>t+1</sub><sup>B</sup>
+            </div>
+            <p class="stage-hint">
+              History and goal use the same interface. The controller keeps the
+              receiver’s action conventions.
+            </p>
           </div>
-          <div class="equation">
-            F<sub>B</sub>( T<sub>A→B</sub>( E<sub>A</sub>(o<sub>t</sub>) ),
-            a<sub>t</sub> ) → ẑ<sub>t+1</sub><sup>B</sup>
-          </div>
-          <p class="stage-hint">
-            History and goal use the same interface. The controller keeps the
-            receiver’s action conventions.
-          </p>
         </div>
       </section>
       <section
@@ -308,7 +400,16 @@
             14 tokens in its own feature space. A learned residual refines the
             resampled grid before channel projection.
           </p>
-          <div class="step-list" id="interface-steps">
+          <p class="detail-copy" id="interface-detail"></p>
+          <label class="field" id="head-control"
+            >Illustrative attention head<select id="attention-head">
+              <option value="0">Head 1</option>
+              <option value="1">Head 2</option>
+            </select></label
+          >
+        </aside>
+        <div class="chapter-stage interface-stage">
+          <div class="stage-steps" id="interface-steps">
             <button class="selected" data-stage="0">
               <span>01</span> Resample the source grid</button
             ><button data-stage="1">
@@ -319,15 +420,6 @@
               <span>04</span> Restore receiver features
             </button>
           </div>
-          <p class="detail-copy" id="interface-detail"></p>
-          <label class="field" id="head-control"
-            >Illustrative attention head<select id="attention-head">
-              <option value="0">Head 1</option>
-              <option value="1">Head 2</option>
-            </select></label
-          >
-        </aside>
-        <div class="chapter-stage interface-stage">
           <div class="stage-top">
             <span>LeWM → DINO-WM</span
             ><span class="small-label">Computed teaching example</span>
@@ -387,8 +479,8 @@
             href="assets/UniGeom.pdf"
             rel="noopener"
             target="_blank"
-            >Full protocols and comparisons ↗</a
-          >
+            >Full protocols and comparisons
+          </a>
         </aside>
         <div class="chapter-stage results-stage">
           <div class="stage-top">
@@ -426,7 +518,7 @@
                 data-case="0"
                 role="tab"
               >
-                <span>Navigation</span><small>MAE → LeWM</small></button
+                <span>Navigation</span><small>MAE LeWM</small></button
               ><button
                 aria-selected="false"
                 data-case="1"
@@ -434,7 +526,7 @@
                 tabindex="-1"
               >
                 <span>PushT · LeWM source</span
-                ><small>LeWM → DINO-WM</small></button
+                ><small>LeWM DINO-WM</small></button
               ><button
                 aria-selected="false"
                 data-case="2"
@@ -442,7 +534,7 @@
                 tabindex="-1"
               >
                 <span>PushT · MAE source</span
-                ><small>MAE → DINO-WM</small></button
+                ><small>MAE DINO-WM</small></button
               ><button
                 aria-selected="false"
                 data-case="3"
@@ -450,7 +542,7 @@
                 tabindex="-1"
               >
                 <span>Dimmed observations</span
-                ><small>Clean → mixed calibration</small></button
+                ><small>Clean mixed calibration</small></button
               ><button
                 aria-selected="false"
                 data-case="4"
@@ -458,7 +550,7 @@
                 tabindex="-1"
               >
                 <span>Reacher · recurrent receiver</span
-                ><small>LeWM → Dreamer</small>
+                ><small>LeWM Dreamer</small>
               </button>
             </div>
             <p class="footnote">
@@ -493,6 +585,45 @@
         </div>
       </section>
       <section
+        aria-labelledby="tab-figures"
+        class="slide chapter figures-section"
+        data-slide="figures"
+        hidden=""
+        id="slide-figures"
+        role="tabpanel"
+      >
+        <aside class="chapter-copy">
+          <h2>Figures from the paper.</h2>
+          <p>
+            Explore the original figures, from representation geometry to
+            prediction and behavior across tasks.
+          </p>
+          <div
+            aria-label="Paper figures"
+            class="paper-figure-list"
+            id="paper-figure-list"
+            role="tablist"
+          ></div>
+        </aside>
+        <div class="chapter-stage paper-figure-stage">
+          <div class="paper-figure-heading">
+            <h3 id="paper-figure-title">Loading figures</h3>
+            <button class="button small" id="enlarge-gallery">
+              Enlarge figure
+            </button>
+          </div>
+          <button
+            aria-label="Enlarge selected paper figure"
+            class="paper-image-button"
+            id="gallery-image-button"
+          >
+            <img alt="Selected figure from the paper" id="paper-figure-image" />
+          </button>
+          <p class="paper-figure-caption" id="paper-figure-caption"></p>
+          <p class="footnote" id="paper-figure-scope"></p>
+        </div>
+      </section>
+      <section
         aria-labelledby="tab-paper"
         class="slide paper-section"
         data-slide="paper"
@@ -508,8 +639,8 @@
             href="assets/UniGeom.pdf"
             rel="noopener"
             target="_blank"
-            >Read the manuscript ↗</a
-          >
+            >Read the manuscript
+          </a>
         </div>
         <div class="paper-grid">
           <p>
@@ -553,7 +684,8 @@
     and Wu, Chengyu and Su, Ningxin},
   year={2026},
   howpublished={Research manuscript}
-}</pre>
+}</pre
+            >
             <span id="copy-status" role="status"></span>
           </div>
         </div>
@@ -571,13 +703,13 @@
     <footer class="deck-controls">
       <div class="tour-progress">
         <input
-          type="range"
-          id="tour-seek"
-          min="0"
-          max="1000"
-          value="0"
-          step="1"
           aria-label="Seek through presentation"
+          id="tour-seek"
+          max="1000"
+          min="0"
+          step="1"
+          type="range"
+          value="0"
         />
       </div>
       <div class="controls-inner">
@@ -586,42 +718,35 @@
           ><span id="page-name">Overview</span>
         </div>
         <div class="playback">
-          <button id="autoplay" class="autoplay" aria-pressed="false">
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M6 4 L15 10 L6 16 Z" /></svg
-            ><span>Auto play</span></button
+          <button aria-pressed="false" class="autoplay" id="autoplay">
+            <span>Auto play</span></button
           ><button
-            id="replay-page"
-            class="icon-button"
             aria-label="Replay current page"
+            class="icon-button"
+            id="replay-page"
             title="Replay current page"
           >
-            ↺
+            Replay
           </button>
         </div>
         <div class="page-arrows">
           <button
-            id="previous-page"
-            class="page-arrow"
             aria-label="Previous page"
+            class="page-arrow"
+            id="previous-page"
           >
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M12 4 L6 10 L12 16" />
-            </svg></button
-          ><button id="next-page" class="page-arrow" aria-label="Next page">
-            <span id="next-page-label">Shared geometry</span
-            ><svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M8 4 L14 10 L8 16" />
-            </svg>
+            Previous</button
+          ><button aria-label="Next page" class="page-arrow" id="next-page">
+            <span id="next-page-label">Next: Shared geometry</span>
           </button>
         </div>
       </div>
     </footer>
     <div
-      id="page-announcement"
-      class="sr-only"
-      role="status"
       aria-live="polite"
+      class="sr-only"
+      id="page-announcement"
+      role="status"
     ></div>
     <noscript
       ><p class="noscript">
@@ -629,5 +754,25 @@
         <a href="assets/UniGeom.pdf">Read the paper</a>.
       </p></noscript
     >
+    <dialog aria-labelledby="viewer-title" id="figure-viewer">
+      <div class="viewer-toolbar">
+        <h2 id="viewer-title">Paper figure</h2>
+        <label
+          >Zoom
+          <input
+            id="figure-zoom"
+            max="300"
+            min="100"
+            step="10"
+            type="range"
+            value="100" /></label
+        ><a class="button small" download="" id="figure-download">Save figure</a
+        ><button class="button small" id="close-figure">Close</button>
+      </div>
+      <div id="viewer-image-scroll">
+        <img alt="Original paper figure at full resolution" id="viewer-image" />
+      </div>
+      <p id="viewer-caption"></p>
+    </dialog>
   </body>
 </html>
